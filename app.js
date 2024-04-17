@@ -15,7 +15,23 @@ function getList() {
   });
 }
 
+const errPar = document.getElementById("error");
+const unorderedList = document.getElementById("list");
+
 // TODO: Handle the resolved or rejected states of the promise
+getList()
+.then((resVal) => {
+  console.log(resVal);
+  resVal.forEach((hobbit) => {
+    let li = document.createElement("li");
+    li.textContent = hobbit;
+    unorderedList.appendChild(li);
+  });
+})
+.catch((rejVal) => {
+  console.error(rejVal);
+  errPar.textContent = rejVal.message;
+})
 
 // TODO: If the promise resolves with the list of hobbits
 // Render the list of hobbits as list items within the unordered list with id="list" (check the index.html file)
